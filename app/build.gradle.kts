@@ -1,26 +1,36 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
+    with(libs.plugins) {
+        id(ksp.get().pluginId)
+        id(kotlin.kapt.get().pluginId)
+        id(com.android.application.get().pluginId)
+        id(org.jetbrains.kotlin.android.get().pluginId)
+        id(kotlin.parcelize.get().pluginId)
+        id(androidx.navigation.safeargs.get().pluginId)
+        id(com.google.dagger.hilt.android.get().pluginId)
+    }
 }
 
 android {
     namespace = "com.example.popularandroidgitrepo"
-    compileSdk = 35
+    compileSdk = libs.versions.compileSdkVersion.get().toInt()
 
     defaultConfig {
         applicationId = "com.example.popularandroidgitrepo"
-        minSdk = 24
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = libs.versions.minSdkVersion.get().toInt()
+        targetSdk = libs.versions.targetSdkVersion.get().toInt()
+        versionCode = libs.versions.appVersionCode.get().toInt()
+        versionName = libs.versions.appVersionName.get()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -28,32 +38,67 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.14"
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
 }
 
-dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+dependencies {
+    implementation(project(":data"))
+    with(libs) {
+        // View
+        implementation(splashscreen)
+        implementation(material)
+        implementation(constraint.layout)
+        implementation(bundles.pager)
+        implementation(datetime.picker)
+        coreLibraryDesugaring(desugar)
+        implementation(runtime.permission)
+        implementation(number.picker)
+        implementation(skydove.animation)
+        implementation(system.ui.controller)
+
+        // Kotlin
+        implementation(core.ktx)
+        implementation(kotlin.coroutines)
+
+        // Hilt
+        implementation(bundles.hilt)
+        ksp(hilt.compiler)
+        ksp(hilt.compiler.ksp)
+        ksp(hilt.android.compiler)
+        implementation ("androidx.paging:paging-compose:1.0.0-alpha13")
+
+        // Jetpack
+        implementation(platform(compose.bom))
+        implementation(bundles.compose)
+        implementation(bundles.lifecycle)
+        implementation(work.manager.ktx)
+        implementation(bundles.lifecycle)
+        implementation(bundles.navigation)
+
+        // Image
+        implementation(bundles.coil)
+
+        implementation(circleindicator)
+
+
+        // Network
+        implementation(gson)
+    }
 }
