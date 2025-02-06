@@ -6,6 +6,8 @@ import com.example.popularandroidgitrepo.presentation.global_component.CustomTex
 
 @Composable
 fun HomeScreen(navController: NavHostController) {
+
+
     CustomText(
         text = "welcome to home screen"
     )
