@@ -1,16 +1,13 @@
 package com.example.popularandroidgitrepo.presentation.global_component
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import coil.compose.AsyncImage
 import coil.request.CachePolicy
 import coil.request.ImageRequest
-import com.example.popularandroidgitrepo.R
 
 
 // Custom Image composable to load images from the internet
@@ -34,12 +31,12 @@ fun CustomImageAsync(
         .build()
 
     Box {
-        Image(
-            painterResource(id = R.drawable.ic_logo),
-            contentDescription = contentDescription,
-            modifier = modifier,
-            contentScale = ContentScale.Crop
-        )
+//        Image(
+//            painterResource(id = R.drawable.ic_logo),
+//            contentDescription = contentDescription,
+//            modifier = modifier,
+//            contentScale = ContentScale.Crop
+//        )
 
         AsyncImage(
             model = imageRequest,

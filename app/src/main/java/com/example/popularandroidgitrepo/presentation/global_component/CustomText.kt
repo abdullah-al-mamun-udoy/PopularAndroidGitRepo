@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun CustomText(
     text: String = "",
-    color: Color = Color.White,
+    color: Color = Color.Black,
     lineHeight: TextUnit = 16.sp,
     textAlign: TextAlign = TextAlign.Start,
     fontWeight: FontWeight = FontWeight.Normal,
