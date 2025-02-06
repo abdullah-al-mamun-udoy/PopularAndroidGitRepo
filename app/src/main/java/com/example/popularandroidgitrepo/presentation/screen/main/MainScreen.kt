@@ -22,6 +22,7 @@ import androidx.navigation.NavHostController
 import com.example.popularandroidgitrepo.navigation.HomeNavGraph
 import com.example.popularandroidgitrepo.navigation.Screen
 import com.example.popularandroidgitrepo.ui.theme.Background_Black
+import com.example.popularandroidgitrepo.ui.theme.Background_White
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @RequiresApi(Build.VERSION_CODES.R)
@@ -48,14 +49,14 @@ fun MainScreen(
     //Set the system bars color to black
     SideEffect {
         systemUiController.setSystemBarsColor(
-            color = Background_Black,
+            color = Background_White,
         )
     }
 
     //Scaffold is a pre-defined layout structure in Jetpack Compose
     Scaffold(
         scaffoldState = scaffoldState,
-        backgroundColor = Background_Black
+        backgroundColor = Background_White
     ) { padding ->
         Column(
             modifier = Modifier
@@ -63,6 +64,12 @@ fun MainScreen(
                 .padding(padding)
                 .background(Color.Transparent)
         ) {
+            TopBar(
+                showTitle = currentPageState.value != "details_screen/{repoJson}",
+                onBackPressed = {
+                    navHostController.popBackStack()
+                }
+            )
 
             //Called the navigation graph for the MainScreen
             HomeNavGraph(
