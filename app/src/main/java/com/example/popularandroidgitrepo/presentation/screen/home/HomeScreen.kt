@@ -66,7 +66,7 @@ fun HomeScreen(
     } else {
         when (gitRepoState) {
             is Resource.Success -> {
-//                val repoList = (gitRepoState as Resource.Success<GitAndroidRepositoryResponse>).data.items.orEmpty().filterNotNull()
+
                 val repoList = (gitRepoState as? Resource.Success<List<GitAndroidRepositoryResponse.Item>>)?.data.orEmpty()
 
                 if (repoList.isEmpty()) {
@@ -137,7 +137,7 @@ fun RepoCard(repo: GitAndroidRepositoryResponse.Item, onClick: () -> Unit = {}) 
             ) {
                 repo.owner?.avatarUrl?.let {
                     CustomImageAsync(
-                        imageUrl = it, // You can replace it with repo.imageUrl if available
+                        imageUrl = it,
                         modifier = Modifier.clip(shape = CircleShape),
                         size = 512
                     )
