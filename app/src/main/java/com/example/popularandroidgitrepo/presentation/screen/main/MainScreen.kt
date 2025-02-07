@@ -1,7 +1,6 @@
 package com.example.popularandroidgitrepo.presentation.screen.main
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
@@ -21,7 +20,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import com.example.popularandroidgitrepo.navigation.HomeNavGraph
 import com.example.popularandroidgitrepo.navigation.Screen
-import com.example.popularandroidgitrepo.ui.theme.Background_Black
 import com.example.popularandroidgitrepo.ui.theme.Background_White
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
