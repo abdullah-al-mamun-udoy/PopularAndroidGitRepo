@@ -115,7 +115,7 @@ data class GitAndroidRepositoryResponse(
         @SerializedName("milestones_url")
         val milestonesUrl: String? = null,
         @SerializedName("mirror_url")
-        val mirrorUrl: Any? = null,
+        val mirrorUrl: String? = null,
         @SerializedName("name")
         val name: String? = null,
         @SerializedName("node_id")
@@ -159,7 +159,7 @@ data class GitAndroidRepositoryResponse(
         @SerializedName("teams_url")
         val teamsUrl: String? = null,
         @SerializedName("topics")
-        val topics: List<String?>? = null,
+        val topics: List<String>? = null,
         @SerializedName("trees_url")
         val treesUrl: String? = null,
         @SerializedName("updated_at")

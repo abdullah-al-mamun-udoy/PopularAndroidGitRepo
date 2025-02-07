@@ -10,3 +10,4 @@ class AppRepository @Inject constructor(
     suspend fun fetchRepo(query: String, sort: String, order: String, perPage: Int) =
         api.searchRepositories(query = query, sort = sort, order = order, perPage = perPage)
 }
+

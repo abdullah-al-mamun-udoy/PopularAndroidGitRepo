@@ -66,9 +66,9 @@ fun HomeScreen(
     } else {
         when (gitRepoState) {
             is Resource.Success -> {
-                val repoList =
-                    (gitRepoState as Resource.Success<GitAndroidRepositoryResponse>).data.items.orEmpty()
-                        .filterNotNull()
+//                val repoList = (gitRepoState as Resource.Success<GitAndroidRepositoryResponse>).data.items.orEmpty().filterNotNull()
+                val repoList = (gitRepoState as? Resource.Success<List<GitAndroidRepositoryResponse.Item>>)?.data.orEmpty()
+
                 if (repoList.isEmpty()) {
                     Box(
                         modifier = Modifier.fillMaxSize(),
