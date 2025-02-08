@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "PopularAndroidGitRepo"
 include(":app")
- 
+include(":data")
